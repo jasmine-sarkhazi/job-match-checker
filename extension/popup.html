@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Job Match Checker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="popup">
+  <header class="bar">
+    <span class="brand">Job Match Checker</span>
+    <button id="openOptions" class="link" type="button" title="Options">Settings</button>
+  </header>
+
+  <section id="setup" class="card" hidden>
+    <p id="setupMessage"></p>
+    <button id="setupButton" class="primary" type="button">Open settings</button>
+  </section>
+
+  <section id="ready">
+    <div id="jobMeta" class="job-meta" hidden>
+      <div id="jobTitle" class="job-title"></div>
+      <div id="jobCompany" class="job-company"></div>
+    </div>
+    <button id="check" class="primary big" type="button">Am I a fit for this job?</button>
+    <p id="status" class="status" hidden></p>
+    <details id="manual" class="manual">
+      <summary>Job text looks wrong? Paste it instead</summary>
+      <textarea id="manualJob" rows="6" placeholder="Paste the job description here"></textarea>
+    </details>
+  </section>
+
+  <section id="result" class="card result" hidden>
+    <div class="score-row">
+      <div id="scoreRing" class="ring"><span id="scoreValue">0</span></div>
+      <div>
+        <div id="verdict" class="verdict"></div>
+        <div id="resultJob" class="muted"></div>
+      </div>
+    </div>
+    <p id="blocker" class="blocker" hidden></p>
+    <ul id="dimensions" class="dimensions"></ul>
+    <p id="resultFooter" class="muted small"></p>
+    <button id="recheck" class="link" type="button">Check again</button>
+  </section>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Job Match Checker – Settings</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="options">
+  <main>
+    <h1>Job Match Checker</h1>
+    <p class="muted">Upload your resume once. Then, on any job page, click the extension and ask <em>Am I a fit for this job?</em> Scoring is done by <a href="https://typesafe.ai" target="_blank" rel="noreferrer">Jev (TypeSafe AI)</a> using your own API key.</p>
+
+    <section class="card">
+      <h2>1. TypeSafe API key</h2>
+      <p class="muted small">Create a key at <a href="https://console.typesafe.ai/keys" target="_blank" rel="noreferrer">console.typesafe.ai/keys</a>. It is stored only in this browser's extension storage and sent only to api.typesafe.ai.</p>
+      <div class="row">
+        <input id="apiKey" type="password" placeholder="sk-…" autocomplete="off" spellcheck="false" />
+        <button id="toggleKey" class="link" type="button">Show</button>
+      </div>
+      <div class="row">
+        <button id="saveKey" class="primary" type="button">Save key</button>
+        <button id="testKey" type="button">Test connection</button>
+        <span id="keyStatus" class="status inline"></span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Your resume</h2>
+      <p class="muted small">Upload a PDF, .txt, or .md file, or paste the text. Only the extracted text is stored.</p>
+      <div class="row">
+        <input id="resumeFile" type="file" accept=".pdf,.txt,.md,.markdown,text/plain,application/pdf" />
+      </div>
+      <textarea id="resumeText" rows="16" placeholder="…or paste your resume text here"></textarea>
+      <div class="row">
+        <button id="saveResume" class="primary" type="button">Save resume</button>
+        <button id="clearResume" type="button">Clear</button>
+        <span id="resumeStatus" class="status inline"></span>
+      </div>
+      <p id="resumeInfo" class="muted small"></p>
+    </section>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>
