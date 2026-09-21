@@ -7,7 +7,65 @@ Upload your resume once. Then, before you apply, click the extension on a job pa
 [Jev](https://typesafe.ai), TypeSafe AI's System One model, which returns calibrated,
 typed judgments instead of generated text.
 
-## How it works
+## How to use
+
+### 1. Install the extension
+
+```bash
+git clone https://github.com/jasmine-sarkhazi/job-match-checker.git
+cd job-match-checker
+npm install        # pulls pdf.js for PDF resume parsing
+npm run build      # copies pdf.js into extension/vendor/
+```
+
+Then in Chrome:
+
+1. Open `chrome://extensions`.
+2. Turn on **Developer mode** (top right).
+3. Click **Load unpacked** and choose the `extension/` folder.
+4. Pin **Job Match Checker** from the puzzle-piece menu so the button is always visible.
+
+The settings page opens automatically on first install. Without `npm run build` everything still
+works except PDF upload; paste your resume text or upload a `.txt`/`.md` file instead.
+
+### 2. Add your Jev API key
+
+1. Create a key at [console.typesafe.ai/keys](https://console.typesafe.ai/keys). Jev is currently
+   in early access, so you may need to join the waitlist first.
+2. On the extension's settings page, paste the key and click **Save key**.
+3. Click **Test connection**. You should see `Key works. Models: jev-latest, …`.
+
+The key is stored only in your browser's extension storage and is only ever sent to
+`api.typesafe.ai`.
+
+### 3. Upload your resume (once)
+
+On the same settings page, either choose a file (**PDF**, `.txt`, or `.md`) or paste your resume
+text into the box, then click **Save resume**. Only the extracted text is kept. You can come back
+and replace it any time; saving a new resume clears old scores.
+
+### 4. Check a job
+
+1. Open any job posting (LinkedIn, Indeed, Greenhouse, Lever, Workday, a company careers page…).
+2. Click the **Job Match Checker** icon in the toolbar.
+3. Click **Am I a fit for this job?**
+
+In a second or two you get:
+
+| Part of the result | What it means |
+| --- | --- |
+| **Score (0–100)** and verdict | Overall match. 80+ Strong fit, 60–79 Good fit, 40–59 Partial fit, below 40 Weak fit. |
+| **Heads-up banner** | Shown when Jev thinks the job lists a hard requirement (degree, certification, clearance, must-have tech) your resume doesn't show. |
+| **Dimension bars** | Required skills, experience level, responsibilities, domain relevance, overall fit, and whether a recruiter would shortlist you. Hover a bar for Jev's confidence and the weight used. |
+
+The last score for each job URL is remembered, so reopening the popup on the same page shows it
+instantly. Click **Check again** to re-score.
+
+If the popup says it couldn't find a job description (some pages hide it behind a login or render
+it in an unusual way), expand **Job text looks wrong? Paste it instead**, paste the description,
+and click the button again.
+
+## How it works under the hood
 
 1. **Options page** – you paste your TypeSafe API key and upload your resume (PDF, `.txt`, `.md`,
    or pasted text). Only the extracted text is kept, in `chrome.storage.local`.
@@ -36,26 +94,6 @@ typed judgments instead of generated text.
 Jev never generates text, so the result is a number and a breakdown, not an essay. The raw
 answers (probabilities and confidence) are kept on the result so the weights can be tuned
 without re-querying.
-
-## Install (unpacked)
-
-```bash
-npm install        # pulls pdf.js for PDF resume parsing
-npm run build      # copies pdf.js into extension/vendor/
-```
-
-Then in Chrome open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**,
-and pick the `extension/` folder. The options page opens on first install.
-
-Without `npm run build` everything still works except PDF upload; paste your resume text or
-upload a `.txt`/`.md` file instead.
-
-## Get a Jev API key
-
-Create a key at [console.typesafe.ai/keys](https://console.typesafe.ai/keys) and paste it into
-the extension's options page. Jev is currently in early access, so you may need to join the
-waitlist first. The key is stored only in your browser's extension storage and is only ever sent
-to `api.typesafe.ai`. Use **Test connection** on the options page to verify it.
 
 ## Development
 
