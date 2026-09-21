@@ -1,0 +1,16 @@
+{
+  "name": "job-match-checker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome extension that scores the job page you're on against your resume using Jev (TypeSafe AI).",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/vendor-pdfjs.mjs",
+    "test": "node --test test/jev.test.mjs",
+    "test:e2e": "node --test test/e2e.test.mjs"
+  },
+  "devDependencies": {
+    "pdfjs-dist": "^6.3.289",
+    "playwright-core": "^1.56.1"
+  }
+}

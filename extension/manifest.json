@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Job Match Checker",
+  "version": "0.1.0",
+  "description": "Am I a fit for this job? Scores the job page you're on against your saved resume using Jev (TypeSafe AI).",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["https://api.typesafe.ai/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Am I a fit for this job?",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
